@@ -23,27 +23,30 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         //Creating my cube with material and colors + scape.
         //let cube = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.01)
         
-        let sphere = SCNSphere(radius: 0.2)
-        
-        let material = SCNMaterial()
-        material.diffuse.contents = UIImage(named: "art.scnassets/moon.jpeg")
-        sphere.materials = [material]
-        
-        //Creating the node. This is the possition in 3d space of the cube.
-        let node = SCNNode()
-        node.position = SCNVector3(x: 0, y: 0.1, z: -0.5)
-        
-        node.geometry = sphere
-
-        sceneView.scene.rootNode.addChildNode(node) //Adding the node to the sceen as chlid.
+//        let sphere = SCNSphere(radius: 0.2)
+//
+//        let material = SCNMaterial()
+//        material.diffuse.contents = UIImage(named: "art.scnassets/moon.jpeg")
+//        sphere.materials = [material]
+//
+//        //Creating the node. This is the possition in 3d space of the cube.
+//        let node = SCNNode()
+//        node.position = SCNVector3(x: 0, y: 0.1, z: -0.5)
+//
+//        node.geometry = sphere
+//
+//        sceneView.scene.rootNode.addChildNode(node) //Adding the node to the sceen as chlid.
         sceneView.automaticallyUpdatesLighting = true
         
         
-        //        // Create a new scene
-//        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-//
-//        // Set the scene to the view
-//        sceneView.scene = scene
+                // Create a new scene
+        let diceScene = SCNScene(named: "art.scnassets/diceCollada.scn")!
+        if let diceNode = diceScene.rootNode.childNode(withName: "Dice", recursively: true) {
+        diceNode.position = SCNVector3(x: 0, y: 0, z: -0.1)
+        sceneView.scene.rootNode.addChildNode(diceNode)
+        }
+
+ 
     }
     
     override func viewWillAppear(_ animated: Bool) {
